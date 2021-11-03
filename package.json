@@ -1,0 +1,24 @@
+{
+    "name": "dev-container-example",
+    "version": "0.0.1",
+    "description": "HYPR Dev Container Example",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hyprnz/dev-containers"
+    },
+    "scripts": {
+        "api": "echo \"this script would start the api\"",
+        "db:migrate": "echo \"this script would run some migrations\"",
+        "dev": "docker-compose -f dev/docker-compose.yml",
+        "dev:connect": "npm run dev -- exec api bash",
+        "dev:down": "npm run dev -- down",
+        "dev:logs": "npm run dev -- logs -f",
+        "dev:up": "npm run dev -- up -d",
+        "init": "npm ci && npm run db:migrate"
+    },
+    "keywords": [
+        "devcontainer"
+    ],
+    "author": "HYPR Innovation",
+    "license": "UNLICENSED"
+}

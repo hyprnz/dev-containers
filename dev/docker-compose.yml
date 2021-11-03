@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  api:
+    image: hypr-example/dev-container:0.0.1
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3030:3030
+    container_name: hypr-dev-container
+    working_dir: /example
+    volumes:
+       - ..:/example
+       # Handy if you're doing commits from the container and don't want to re-enter your details
+       - ~/.gitconfig:/home/node/.gitconfig 
+    env_file:
+      - ../.env
+    command: sleep infinity
+
+  db:
+    image: localstack/localstack:0.12.16
+    ports:
+      - 4566:4566
+    container_name: hypr-example-db
+    environment:
+      SERVICES: dynamodb
+      DATA_DIR: '/tmp/localstack/data'

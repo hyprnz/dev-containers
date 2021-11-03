@@ -1,0 +1,15 @@
+{
+	"name": "Example Dev Container",
+	"dockerComposeFile": [
+		"../dev/docker-compose.yml"
+	],
+	"service": "api",
+	"workspaceFolder": "/example",
+	"extensions": [
+		"eamodio.gitlens",
+		"ms-vsliveshare.vsliveshare",
+		"dbaeumer.vscode-eslint"
+	],
+	"shutdownAction": "stopCompose",
+	"remoteUser": "node"
+}
