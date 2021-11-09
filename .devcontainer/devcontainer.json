@@ -1,15 +1,23 @@
 {
 	"name": "Example Dev Container",
+	// docker compose file(s) to build the required container(s) from
 	"dockerComposeFile": [
 		"../dev/docker-compose.yml"
 	],
+	// the service VSCode should use as the dev container (defined in the docker compose file/s)
 	"service": "api",
+        // change into the `/example` dir when opening terminals
 	"workspaceFolder": "/example",
+	// VSCode extensions to install inside the container - you don't need to install them locally!
+	// They will be automatically installed when the container opens
 	"extensions": [
 		"eamodio.gitlens",
 		"ms-vsliveshare.vsliveshare",
 		"dbaeumer.vscode-eslint"
 	],
+	// i.e. run `docker-compose down` to stop the container when closing VSCode
 	"shutdownAction": "stopCompose",
+	// set a non-root user as the active user in the container
+	// user `node` was created by the node image
 	"remoteUser": "node"
 }

@@ -7,14 +7,11 @@
         "url": "https://github.com/hyprnz/dev-containers"
     },
     "scripts": {
-        "api": "echo \"this script would start the api\"",
-        "db:migrate": "echo \"this script would run some migrations\"",
-        "dev": "docker-compose -f dev/docker-compose.yml",
-        "dev:connect": "npm run dev -- exec api bash",
-        "dev:down": "npm run dev -- down",
-        "dev:logs": "npm run dev -- logs -f",
-        "dev:up": "npm run dev -- up -d",
-        "init": "npm ci && npm run db:migrate"
+        "docker:dev": "docker-compose -f dev/docker-compose.yml",
+        "docker:dev:connect": "npm run docker:dev -- exec api bash",
+        "docker:dev:down": "npm run docker:dev -- down",
+        "docker:dev:logs": "npm run docker:dev -- logs -f",
+        "docker:dev:up": "npm run docker:dev -- up -d"
     },
     "keywords": [
         "devcontainer"

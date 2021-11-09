@@ -2,27 +2,40 @@ version: '3.7'
 
 services:
   api:
+    # name our image
     image: hypr-example/dev-container:0.0.1
+    # use the Dockerfile in this folder to build our dev container image
     build: .
+    # ensure db is running before starting the api service
+    # (prevent trying to connect to a non-existent DB)
     depends_on:
       - db
+    # expose port 3000 inside the container to the outside world
     ports:
-      - 3030:3030
+      - 3000:3000
+    # custom name for the container (otherwise default generated)
     container_name: hypr-dev-container
+    # change into the `/example` dir when created
     working_dir: /example
+    # mount host paths to the container
     volumes:
+       # the root of this repo is mounted to `/example`
        - ..:/example
-       # Handy if you're doing commits from the container and don't want to re-enter your details
+       # this is handy if you're doing commits from the container and don't want to re-enter your details
        - ~/.gitconfig:/home/node/.gitconfig 
-    env_file:
-      - ../.env
+    # add env vars to the container from a file
+    env_file: ../.env
+    # keeps the container running until we explicitly stop it
     command: sleep infinity
 
   db:
+    # db is built from an existing image rather than our own Dockerfile
+    # (localstack is an AWS service emulator)
     image: localstack/localstack:0.12.16
     ports:
       - 4566:4566
     container_name: hypr-example-db
+    # add env vars to the container
     environment:
       SERVICES: dynamodb
       DATA_DIR: '/tmp/localstack/data'
