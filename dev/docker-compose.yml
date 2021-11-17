@@ -19,7 +19,8 @@ services:
     working_dir: /example
     # mount host paths to the container
     volumes:
-       # the root of this repo is mounted to `/example`
+       # the root of this repo is mounted to `/example`. Changes made in the container and on the host
+       # will be kept in sync
        - ..:/example
        # this is handy if you're doing commits from the container and don't want to re-enter your details
        - ~/.gitconfig:/home/node/.gitconfig 
